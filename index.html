@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>КнАГУ AI — помощник абитуриента</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="shell">
+  <aside class="sidebar">
+    <div class="brand"><div class="brand-mark">К</div><div><b>КнАГУ AI</b><span>Приёмная кампания 2026</span></div></div>
+    <nav>
+      <button class="nav active" data-page="chat"><span>✦</span> AI-помощник</button>
+      <button class="nav" data-page="programs"><span>⌕</span> Направления</button>
+      <button class="nav" data-page="checker"><span>✓</span> Проверка поступления</button>
+      <button class="nav" data-page="staff"><span>▦</span> Кабинет сотрудника</button>
+    </nav>
+    <div class="side-bottom">
+      <div class="status"><i></i><div><b>База знаний</b><span>КнАГУ • 2026</span></div></div>
+      <a href="https://abit.knastu.ru/" target="_blank">Официальный портал ↗</a>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div><span class="mobile-title">КнАГУ AI</span></div>
+      <div class="top-actions"><span class="pill">● Данные 2026</span><a href="https://abit.knastu.ru/" target="_blank">abit.knastu.ru ↗</a></div>
+    </header>
+
+    <section id="chat" class="page active">
+      <div class="chat-wrap">
+        <div id="chatMessages" class="chat-messages">
+          <div class="hero">
+            <div class="hero-icon">✦</div>
+            <h1>Чем могу помочь?</h1>
+            <p>Отвечу на вопросы о поступлении в КнАГУ, помогу подобрать направление и проверить, какие экзамены вам нужны.</p>
+            <div class="quick-grid">
+              <button data-q="Какие документы нужны для поступления?">📄 Документы для поступления</button>
+              <button data-q="Какие сроки подачи документов на бюджет?">📅 Сроки приёма</button>
+              <button data-q="Какие экзамены нужны на 09.03.01?">🧮 Экзамены на IT</button>
+              <button data-q="Какие направления есть в КнАГУ?">🎓 Направления</button>
+            </div>
+          </div>
+        </div>
+        <div class="composer-box">
+          <form id="chatForm"><input id="chatInput" placeholder="Спросите о поступлении..." autocomplete="off"><button>➤</button></form>
+          <div class="composer-note">AI-помощник использует базу знаний КнАГУ. Важные решения проверяйте по официальным документам.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="programs" class="page">
+      <div class="page-head"><div><span class="eyebrow">Каталог</span><h2>Направления подготовки</h2><p>Поиск по программам бакалавриата и специалитета КнАГУ.</p></div></div>
+      <div class="filters"><input id="programSearch" placeholder="Поиск по названию или коду..."><select id="subjectFilter"><option value="">Все предметы</option><option>Математика</option><option>Информатика</option><option>Физика</option><option>Химия</option><option>Иностранный язык</option><option>Рисунок</option></select></div>
+      <div id="programGrid" class="program-grid"></div>
+    </section>
+
+    <section id="checker" class="page">
+      <div class="page-head"><div><span class="eyebrow">Интерактивный помощник</span><h2>Проверка поступления</h2><p>Укажите свои предметы и баллы — система покажет подходящие направления и потенциальные проблемы.</p></div></div>
+      <div class="checker-grid">
+        <div class="card form-card">
+          <label>Ваши предметы и баллы</label>
+          <div id="scores"></div>
+          <button id="addScore" class="secondary">＋ Добавить предмет</button>
+          <div class="check-options"><label><input id="hasDoc" type="checkbox" checked> Документ об образовании есть</label><label><input id="budget" type="checkbox" checked> Интересует бюджет</label></div>
+          <button id="runCheck" class="primary wide">Проверить варианты</button>
+        </div>
+        <div class="card result-card"><div class="result-title">Результат</div><div id="checkResult" class="empty">Заполните баллы и нажмите «Проверить варианты».</div></div>
+      </div>
+    </section>
+
+    <section id="staff" class="page">
+      <div class="page-head"><div><span class="eyebrow">Внутренний модуль</span><h2>Кабинет сотрудника</h2><p>Демо-панель для ВКР: обращения, вопросы без ответа и база знаний.</p></div><button id="resetStats" class="secondary">Сбросить демо-данные</button></div>
+      <div class="stats"><div class="stat"><span>Обращения</span><b id="statAll">0</b><small>за текущую сессию</small></div><div class="stat"><span>Автоответы</span><b id="statAuto">0</b><small>решены без сотрудника</small></div><div class="stat"><span>Передано оператору</span><b id="statEsc">0</b><small>требуют внимания</small></div><div class="stat"><span>Эффективность</span><b id="statRate">0%</b><small>автоматизации</small></div></div>
+      <div class="staff-grid"><div class="card"><div class="card-head"><b>Последние обращения</b><span class="muted">Live</span></div><div id="tickets"></div></div><div class="card"><div class="card-head"><b>Вопросы без ответа</b><span class="badge" id="unknownCount">0</span></div><div id="unknowns"></div></div></div>
+    </section>
+  </main>
+</div>
+<script src="data.js"></script><script src="app.js"></script>
+</body>
+</html>
